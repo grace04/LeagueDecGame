@@ -24,7 +24,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer timer;
 	Font titleFont;
 	MainCharacter mc = new MainCharacter(250, 700, 50, 50);
-	ObjectManager objectmanager = new ObjectManager(mc);
+	Snowman snowman = new Snowman(20, 20, 10, 10);
+	ObjectManager objectmanager = new ObjectManager(mc, snowman);
 
 	final int MENU_STATE = 0;
 
@@ -54,29 +55,29 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public GamePanel() {
-		try {
+//		try {
 //change with other images
-			alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
+//			alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
+//
+//			rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
+//
+//			bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
+//
+//			spaceImg = ImageIO.read(this.getClass().getResourceAsStream("space.png"));
 
-			rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
-
-			bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
-
-			spaceImg = ImageIO.read(this.getClass().getResourceAsStream("space.png"));
-
-		} catch (IOException e) {
-
-			// TODO Auto-generated catch block
-
-			e.printStackTrace();
-
-		}
-		timer = new Timer(1000 / 60, this);
-		titleFont = new Font("Arial", Font.CENTER_BASELINE, 35);
+//		} catch (IOException e) {
+//
+//			// TODO Auto-generated catch block
+//
+//			e.printStackTrace();
+//
+//		}
+//		timer = new Timer(1000 / 60, this);
+//		titleFont = new Font("Arial", Font.CENTER_BASELINE, 35);
 	}
 
 	void startGame() {
-		timer.start();
+//		timer.start();
 
 	}
 
@@ -101,7 +102,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.black);
 		g.setFont(titleFont);
 		g.drawString("Game Over", 175, 50);
-		g.drawString("You killed " + objectmanager.getScore() + " enemies ", 100, 300);
+//		g.drawString("You killed " + objectmanager.getScore() + " enemies ", 100, 300);
 		g.drawString("Press ENTER to restart", 50, 500);
 	}
 
@@ -132,12 +133,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	private void updateGameState() {
 		// TODO Auto-generated method stub
 		objectmanager.update();
-		objectmanager.manageEnemies();
-		objectmanager.checkCollision();
-		objectmanager.purgeObjects();
-		if (mc.isAlive == false) {
-			currentState = END_STATE;
-		}
+//		objectmanager.manageEnemies();
+//		objectmanager.checkCollision();
+//		objectmanager.purgeObjects();
+//		if (mc.isAlive == false) {
+//			currentState = END_STATE;
+//		}
 	}
 
 	private void updateMenuState() {
@@ -154,11 +155,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		
+	
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == END_STATE) {
-			mc = new Rocketship(250, 700, 50, 50);
-				objectmanager = new ObjectManager(mc);
+			mc = new MainCharacter(250, 700, 50, 50);
+			snowman= new Snowman (20,20,10,10);
+				objectmanager = new ObjectManager(mc,snowman);
 			}
 			currentState++;
 			if (currentState > END_STATE) {
@@ -166,6 +170,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				currentState = MENU_STATE;
 
 			}
+		
 
 			//how to move mc
 //		} else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
