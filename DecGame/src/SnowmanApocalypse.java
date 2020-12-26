@@ -1,7 +1,6 @@
+import java.awt.Dimension;
+import javax.swing.JFrame;
 
-	import java.awt.Dimension;
-
-	import javax.swing.JFrame;
 public class SnowmanApocalypse {
 
 	JFrame frame;
